@@ -3,8 +3,7 @@
 # install submodules
 git submodule update --init --recursive
 
-
-
+echo "======SETUP public_html folder========="
 if [ ! -d ../public_html/api ] ; then
   mkdir ../public_html/api
 fi
@@ -26,14 +25,17 @@ fi
 cp "$(pwd)/src/backend/public/api/.htaccess" "$(pwd)/../public_html/api"
 
 # install backend dependencies
-echo "Installing backend dependencies with - composer install -d src/backend"
-composer install -d src/backend
+echo "======SETUP BACKEND========="
+echo "1 - checkout master with - git checkout master"
+echo "2 - Installing backend dependencies with - composer install -d src/backend"
+cd src/backend &&  git checkout master && composer install && cd ../../
 
-echo "1 - Installing frontend dependencies with - npm install"
-echo "2 - building with - npm run build"
-echo "3 - copying dist folder to web root with - rsync -ru --no-links src/frontend/dist/* ../public_html/"
-cd  src/frontend && npm install && npm run build && cd ../../ && rsync -ru --no-links src/frontend/dist/* ../public_html/
-
+echo "=====SETUP FRONTEND========="
+echo "1 - checkout master with - git checkout master"
+echo "2 - Installing frontend dependencies with - npm install"
+echo "3 - building with - npm run build"
+echo "4 - copying dist folder to web root with - rsync -ru --no-links src/frontend/dist/* ../public_html/"
+cd src/frontend && git checkout master && npm install && npm run build && cd ../../ && rsync -ru --no-links src/frontend/dist/* ../public_html/
 
 # cp the dist folder to the root hosted folder - /
 
