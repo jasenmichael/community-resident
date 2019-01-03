@@ -1,6 +1,6 @@
 [submodule "src/backend"]
 	path = src/backend
-	url = https://github.com/jasenmichael/community-resident-backend.git
+	url = git@github.com:jasenmichael/community-resident-backend.git
 [submodule "src/frontend"]
 	path = src/frontend
-	url = https://github.com/jasenmichael/community-resident-frontend.git
+	url = git@github.com:jasenmichael/community-resident-frontend.git
