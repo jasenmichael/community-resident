@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 
+# install submodules
+git submodule update --init --recursive
 
 
-# clone backend
-# if [ ! -d src/backend ] ; then
-#   git clone https://github.com/jasenmichael/community-resident-backend.git src/backend
-# else
-#   echo "Backend Directory Exists"
-# fi
 
 if [ ! -d ../public_html/api ] ; then
   mkdir ../public_html/api
@@ -32,16 +28,6 @@ cp "$(pwd)/src/backend/public/api/.htaccess" "$(pwd)/../public_html/api"
 # install backend dependencies
 echo "Installing backend dependencies with - composer install -d src/backend"
 composer install -d src/backend
-
-
-
-
-# clone frontend
-# if [ ! -d src/frontend ] ; then
-#   git clone https://github.com/jasenmichael/community-resident-frontend.git src/frontend
-# else
-#   echo "Frontend Directory Exists"
-# fi
 
 echo "1 - Installing frontend dependencies with - npm install"
 echo "2 - building with - npm run build"
