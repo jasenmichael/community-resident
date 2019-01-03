@@ -1,8 +1,7 @@
 # Community Resident App
 
-clone this repo into the folder that contains your public html
+clone this repo next to the folder that contains your public_html
 
-clone this repo
 ``` bash
 git clone git@github.com:jasenmichael/community-resident.git gb-resident
 ```
