@@ -1,12 +1,54 @@
 #!/usr/bin/env bash
 
+
+
 # clone backend
+# if [ ! -d src/backend ] ; then
+#   git clone https://github.com/jasenmichael/community-resident-backend.git src/backend
+# else
+#   echo "Backend Directory Exists"
+# fi
+
+if [ ! -d ../public_html/api ] ; then
+  mkdir ../public_html/api
+fi
+
 # symlink backend/public/api to root hosted folder - /api
+echo 'creating symlink from $(pwd)/src/backend/public/api/index.php to $(pwd)/../public_html/api'
+if [ -f $(pwd)/../public_html/api/index.php ] ; then
+  echo "symlink found, recreating"
+  rm "$(pwd)/../public_html/api/index.php"
+fi
+ln -s "$(pwd)/src/backend/public/api/index.php" "$(pwd)/../public_html/api"
+
+# copy backend/public/api/.htaccess to root hosted folder - /api
+echo 'copying .htaccess $(pwd)/src/backend/public/api to $(pwd)/../public_html/api'
+if [ -f $(pwd)/../public_html/api/.htaccess ] ; then
+  echo ".htaccess found, re-copying"
+  rm "$(pwd)/../public_html/api/.htaccess"
+fi
+cp "$(pwd)/src/backend/public/api/.htaccess" "$(pwd)/../public_html/api"
+
+# install backend dependencies
+echo "Installing backend dependencies with - composer install -d src/backend"
+composer install -d src/backend
+
+
 
 
 # clone frontend
-# install dependences npm i
-# build frontend npm run build
+# if [ ! -d src/frontend ] ; then
+#   git clone https://github.com/jasenmichael/community-resident-frontend.git src/frontend
+# else
+#   echo "Frontend Directory Exists"
+# fi
+
+echo "1 - Installing frontend dependencies with - npm install"
+echo "2 - building with - npm run build"
+echo "3 - copying dist folder to web root with - rsync -ru --no-links src/frontend/dist/* ../public_html/"
+cd  src/frontend && npm install && npm run build && cd ../../ && rsync -ru --no-links src/frontend/dist/* ../public_html/
+
+
 # cp the dist folder to the root hosted folder - /
 
 # config database
