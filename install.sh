@@ -28,7 +28,7 @@ cp "$(pwd)/src/backend/public/api/.htaccess" "$(pwd)/../public_html/api"
 echo "======SETUP BACKEND========="
 echo "1 - checkout master with - git checkout master"
 echo "2 - Installing backend dependencies with - composer install -d src/backend"
-cd src/backend &&  git checkout master && composer install && cd ../../
+# cd src/backend &&  git checkout master && composer install && cd ../../
 
 echo "=====SETUP FRONTEND========="
 echo "1 - checkout master with - git checkout master"
